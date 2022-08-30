@@ -4,15 +4,18 @@ const Navigation = () => {
 	const handleActive = ({ isActive }) => (isActive ? "activeLink" : "");
 	return (
 		<nav>
-			<NavLink to="/" className={handleActive}>
-				Home
-			</NavLink>
-			<NavLink to="students" className={handleActive}>
-				Students
-			</NavLink>
-			<NavLink to="campuses" className={handleActive}>
-				Campuses
-			</NavLink>
+			<h1>ACME</h1>
+			<div>
+				<NavLink to="/" className={handleActive}>
+					Home
+				</NavLink>
+				<NavLink to="students" className={handleActive}>
+					Students
+				</NavLink>
+				<NavLink to="campuses" className={handleActive}>
+					Campuses
+				</NavLink>
+			</div>
 		</nav>
 	);
 };

@@ -12,14 +12,15 @@ Campus.hasMany(Student);
 const syncAndSeed = async () => {
 	try {
 		await db.sync({ force: true });
-		await Promise.all(
-			studentSeed.map((student) => {
-				return Student.create(student);
-			})
-		);
+
 		await Promise.all(
 			campusSeed.map((campus) => {
 				return Campus.create(campus);
+			})
+		);
+		await Promise.all(
+			studentSeed.map((student) => {
+				return Student.create(student);
 			})
 		);
 		console.log(`Seeding successful!`);

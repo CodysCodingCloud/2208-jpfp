@@ -17,6 +17,12 @@ td {
 	width: 400px;
 	margin: auto;
 }
+.studentProfile {
+	margin-left: 1rem;
+}
+.studentProfile img {
+	width: 150px;
+}
 body::after {
 	content: "";
 	opacity: 0.1;
@@ -35,8 +41,20 @@ nav {
 	display: flex;
 	height: 80px;
 	padding: 10px;
+	justify-content: space-between;
 }
-
+nav div {
+	display: flex;
+	justify-content: flex-end;
+}
+nav h1 {
+	margin-left: 1rem;
+}
+nav a {
+	margin-right: 2rem;
+	text-decoration: none;
+	color: antiquewhite;
+}
 main {
 	align-items: center;
 	display: flex;
@@ -68,11 +86,7 @@ form input {
 button {
 	margin: auto;
 }
-nav a {
-	margin-left: 2rem;
-	text-decoration: none;
-	color: antiquewhite;
-}
+
 .activeLink {
 	color: coral;
 	font-weight: bold;

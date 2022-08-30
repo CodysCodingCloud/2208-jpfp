@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function StudentRow({ student }) {
 	return (
@@ -9,6 +10,11 @@ export function StudentRow({ student }) {
 					<td>{student.firstName}</td>
 					<td>{student.lastName}</td>
 					<td>{student.email}</td>
+					<td>
+						<button>
+							<Link to={`/students/${student.id}`}>Profile</Link>
+						</button>
+					</td>
 				</tr>
 			)}
 		</>

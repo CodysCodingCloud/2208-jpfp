@@ -1,8 +1,7 @@
 import React from "react";
-import { StudentRow } from "./StudentRow";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudents } from "../store/studentSlice";
-
+import { StudentTable } from "./StudentTable";
 export function Students() {
 	const dispatch = useDispatch();
 
@@ -10,26 +9,11 @@ export function Students() {
 		dispatch(fetchStudents());
 	}, []);
 
-	let studentList = useSelector((state) => state.studentList);
-
+	let studentList = useSelector((state) => state.student.studentList);
 	return (
-		<div className="roster">
-			<h1>Student Roster</h1>
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>e-mail</th>
-					</tr>
-				</thead>
-				<tbody>
-					{studentList.map((student) => (
-						<StudentRow key={student.id} student={student} />
-					))}
-				</tbody>
-			</table>
-		</div>
+		<>
+			<h1>Our Students at ACME</h1>
+			<StudentTable studentList={studentList} />
+		</>
 	);
 }
