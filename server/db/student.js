@@ -12,7 +12,7 @@ const Student = db.define("student", {
 		validate: { notEmpty: true },
 	},
 	imageUrl: {
-		type: Sequelize.STRING,
+		type: Sequelize.TEXT,
 		defaultValue: "/placeholder-portrait.png",
 	},
 	email: {
@@ -20,6 +20,6 @@ const Student = db.define("student", {
 		allowNull: false,
 		validate: { notEmpty: false, isEmail: true },
 	},
-	gpa: { type: Sequelize.DECIMAL(1, 1), validate: { max: 4.0, min: 0.0 } },
+	gpa: { type: Sequelize.DECIMAL(2, 1), validate: { max: 4.0, min: 0.0 } },
 });
 module.exports = Student;

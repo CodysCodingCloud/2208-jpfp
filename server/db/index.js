@@ -4,7 +4,7 @@
 const db = require("./database");
 const Student = require("./student");
 const Campus = require("./campus");
-const { studentSeed, campusSeed } = require("./seed");
+const { studentSeed, campusSeed, studentSeed2 } = require("./seed");
 
 Student.belongsTo(Campus);
 Campus.hasMany(Student);
@@ -20,6 +20,11 @@ const syncAndSeed = async () => {
 		);
 		await Promise.all(
 			studentSeed.map((student) => {
+				return Student.create(student);
+			})
+		);
+		await Promise.all(
+			studentSeed2.map((student) => {
 				return Student.create(student);
 			})
 		);

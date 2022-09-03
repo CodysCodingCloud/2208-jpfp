@@ -7,7 +7,7 @@ const Campus = db.define("campus", {
 		validate: { notEmpty: true },
 	},
 	imageUrl: {
-		type: Sequelize.STRING,
+		type: Sequelize.TEXT,
 		defaultValue: "/placeholder-company.png",
 	},
 	address: {
@@ -20,3 +20,9 @@ const Campus = db.define("campus", {
 	},
 });
 module.exports = Campus;
+Campus.beforeUpdate((campus) => {
+	if (campus.imageUrl === "") {
+		campus.imageUrl = "/placeholder-company.png";
+	}
+	return campus;
+});

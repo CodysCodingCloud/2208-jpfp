@@ -17,10 +17,28 @@ const campusSlice = createSlice({
 			state.campusData = action.payload;
 			return state;
 		},
+		removeCampus: (state, action) => {
+			state.campusList = state.campusList.filter(
+				(campus) => campus.id != action.payload.id
+			);
+			return state;
+		},
+		_unregisterStudent: (state, action) => {
+			state.campusData.students = state.campusData.students.filter(
+				(student) => student.id !== action.payload.id
+			);
+			return state;
+		},
 	},
 });
 export default campusSlice.reducer;
-export const { getCampusList, addCampus, getCampus } = campusSlice.actions;
+export const {
+	getCampusList,
+	addCampus,
+	getCampus,
+	removeCampus,
+	_unregisterStudent,
+} = campusSlice.actions;
 export const fetchCampuses = () => async (dispatch) => {
 	const { data: campusList } = await axios.get("/api/campuses");
 	dispatch(getCampusList(campusList));
@@ -28,6 +46,32 @@ export const fetchCampuses = () => async (dispatch) => {
 
 export const fetchCampusData = (campusId) => async (dispatch) => {
 	const { data: campusData } = await axios.get(`/api/campuses/${campusId}`);
-	console.log("campusData", campusData);
 	dispatch(getCampus(campusData));
 };
+export const addCampusData = (newCampusData) => async (dispatch) => {
+	const { data: newData } = await axios.post("/api/campuses", newCampusData);
+	dispatch(addCampus(newData));
+};
+export const removeCampusData = (campusData, navigate) => async (dispatch) => {
+	const { data: deletedCampus } = await axios.delete(
+		`/api/campuses/${campusData.id}`
+	);
+	dispatch(removeCampus(deletedCampus));
+	navigate("/campuses");
+};
+export const updateCampusData = (updatedcampus) => async (dispatch) => {
+	const { data: updatedCampusData } = await axios.put(
+		`/api/campuses/${updatedcampus.id}`,
+		updatedcampus
+	);
+	dispatch(getCampus(updatedCampusData));
+};
+export const unregisterStudent =
+	(updatedStudentProfile) => async (dispatch) => {
+		console.log("nu;;?", updatedStudentProfile);
+		const { data: updatedStudent } = await axios.put(
+			`/api/students/${updatedStudentProfile.id}`,
+			updatedStudentProfile
+		);
+		dispatch(_unregisterStudent(updatedStudent));
+	};

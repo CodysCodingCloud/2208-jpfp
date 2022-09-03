@@ -7,14 +7,16 @@
 	box-sizing: border-box;
 	font-family: arial, sans-serif;
 }
+
 table,
 th,
 td {
 	border: 1px solid black;
 	min-width: 3rem;
+	font-size: 1rem;
 }
 .roster {
-	width: 400px;
+	width: 95vw;
 	margin: auto;
 }
 .studentProfile {
@@ -22,16 +24,6 @@ td {
 }
 .studentProfile img {
 	width: 150px;
-}
-body::after {
-	content: "";
-	opacity: 0.1;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	position: absolute;
-	z-index: -1;
 }
 
 nav {
@@ -61,27 +53,26 @@ main {
 	flex-direction: column;
 	justify-content: center;
 }
-.candyList {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.candyList img {
-	width: 488px;
-}
+
 form {
 	position: relative;
+	width: 500px;
+	margin: auto;
 }
 form label {
 	display: block;
-	width: 500px;
 	font-size: 1.5rem;
 }
 form input {
 	position: absolute;
 	height: 1.5rem;
 	right: 0;
+}
+.largeInput {
+	position: relative;
+	width: 100%;
+	margin: auto;
+	height: 4rem;
 }
 button {
 	margin: auto;
@@ -91,4 +82,41 @@ button {
 	color: coral;
 	font-weight: bold;
 	border-bottom: 5px coral solid;
+}
+.deletePopUp {
+	position: fixed;
+	display: flex;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 50%);
+	justify-content: center;
+	align-items: center;
+}
+.deletePopUp > div {
+	width: 50%;
+	background-color: #bfbfbf;
+	border: 3px solid grey;
+	padding: 1rem 2rem;
+}
+.multiBtn {
+	display: flex;
+	justify-content: space-evenly;
+}
+.deleteBtn {
+	color: red;
+	font-weight: bold;
+}
+.campusItem {
+	position: relative;
+	width: 80%;
+	margin-bottom: 1rem;
+	border-bottom: 1rem solid rgba(0, 0, 0, 50%);
+	margin: auto;
+}
+.campusItem .deleteBtn {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
 }
