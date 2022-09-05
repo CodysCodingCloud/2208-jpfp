@@ -6,6 +6,7 @@ import { Campuses } from "./components/Campuses";
 import { Campus } from "./components/Campus";
 import { Home } from "./components/Home";
 import Navigation from "./components/Navigation";
+import { PageNotFound } from "./components/PageNotFound";
 function App() {
 	return (
 		<>
@@ -18,9 +19,12 @@ function App() {
 					</Route>
 					<Route path={"/campuses"}>
 						<Route index element={<Campuses />} />
+						<Route path="*" element={<PageNotFound />} />
+
 						<Route path={":id"} element={<Campus />} />
 					</Route>
 					<Route index element={<Home />} />
+					<Route path="*" element={<PageNotFound />} />
 				</Route>
 			</Routes>
 		</>

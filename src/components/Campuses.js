@@ -18,16 +18,23 @@ export function Campuses() {
 
 	return (
 		<>
-			<div className="campus-List">
-				<h1>Our Campuses</h1>
-				{campusesList &&
-					campusesList.map((campus) => (
-						<CampusPreview key={campus.id} campus={campus} />
-					))}
-			</div>
-			<button onClick={toggleAddButton}>Contract a new school</button>
-			{toggleAdd && (
-				<AddCampus toggleAdd={toggleAdd} setToggleAdd={setToggleAdd} />
+			{toggleAdd ? (
+				<AddCampus cancelAddButton={toggleAddButton} />
+			) : (
+				<>
+					{" "}
+					<div className="campus-List">
+						<h1>Our Campuses</h1>
+						{campusesList ? (
+							campusesList.map((campus) => (
+								<CampusPreview key={campus.id} campus={campus} />
+							))
+						) : (
+							<h3>No Campuses to display</h3>
+						)}
+					</div>
+					<button onClick={toggleAddButton}>Contract a new school</button>
+				</>
 			)}
 		</>
 	);

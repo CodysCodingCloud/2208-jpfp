@@ -18,7 +18,7 @@ export function Campus() {
 	let campusData = useSelector((state) => state.campus.campusData);
 	return (
 		<div className="campusItem">
-			{campusData && (
+			{campusData ? (
 				<>
 					{editToggle ? (
 						<EditCampus
@@ -36,6 +36,8 @@ export function Campus() {
 						</>
 					)}
 				</>
+			) : (
+				<h3>This this not a valid campus, please return to home</h3>
 			)}
 		</div>
 	);

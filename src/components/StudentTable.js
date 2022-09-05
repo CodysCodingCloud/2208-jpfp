@@ -4,7 +4,7 @@ import { StudentRow } from "./StudentRow";
 export function StudentTable({ studentList }) {
 	return (
 		<>
-			{studentList && (
+			{studentList ? (
 				<div className="roster">
 					<h1>Student Roster</h1>
 					<table>
@@ -23,6 +23,8 @@ export function StudentTable({ studentList }) {
 						</tbody>
 					</table>
 				</div>
+			) : (
+				<h3>No students are enrolled</h3>
 			)}
 		</>
 	);

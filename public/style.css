@@ -90,7 +90,7 @@ button {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background-color: rgba(0, 0, 0, 50%);
+	background-color: rgba(0, 0, 0, 0.2);
 	justify-content: center;
 	align-items: center;
 }

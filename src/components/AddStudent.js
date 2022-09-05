@@ -8,7 +8,7 @@ export const AddStudent = ({ setToggleAdd, toggleAdd }) => {
 		email: "",
 		imageUrl: "",
 	});
-
+	const [errorList, setErrorList] = React.useState([]);
 	const dispatch = useDispatch();
 	const handleChange = (event) => {
 		let target = event.target.name;
@@ -17,29 +17,43 @@ export const AddStudent = ({ setToggleAdd, toggleAdd }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		if (
-			item.firstName.length > 0 &&
-			item.lastName.length > 0 &&
-			item.email.length > 0
-		) {
-			if (item.imageUrl.length === 0) {
-				delete item.imageUrl;
-			}
-			console.log(item);
-			dispatch(addStudentData(item));
-			setItem({
-				firstName: "",
-				lastName: "",
-				email: "",
-				imageUrl: "",
+		setErrorList([]);
+		if (item.firstName.length <= 0) {
+			setErrorList((errorList) => [...errorList, "please enter a first name"]);
+		}
+		if (item.lastName.length <= 0) {
+			setErrorList((errorList) => [...errorList, "please enter a last name"]);
+		}
+		if (item.email.length <= 0) {
+			setErrorList((errorList) => [...errorList, "an email is required"]);
+		}
+		if (errorList.length === 0) {
+			dispatch(addStudentData(item)).then((msg) => {
+				if (msg !== undefined) {
+					setErrorList((errorList) => [...errorList, msg]);
+				} else {
+					setItem({
+						firstName: "",
+						lastName: "",
+						email: "",
+						imageUrl: "",
+					});
+					setErrorList([]);
+					setToggleAdd(!toggleAdd);
+				}
 			});
-			setToggleAdd(!toggleAdd);
 		}
 	};
 	return (
 		<form className="studentForm">
 			<h3>Enrollment Form</h3>
+			{errorList && (
+				<div>
+					{errorList.map((error, idx) => (
+						<p key={idx}>{error}</p>
+					))}
+				</div>
+			)}
 			<label>
 				First Name:
 				<input

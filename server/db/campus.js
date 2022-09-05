@@ -13,7 +13,12 @@ const Campus = db.define("campus", {
 	address: {
 		type: Sequelize.STRING,
 		allowNull: false,
-		validate: { notEmpty: true },
+		validate: {
+			notEmpty: {
+				args: true,
+				msg: "please input an address",
+			},
+		},
 	},
 	description: {
 		type: Sequelize.TEXT,

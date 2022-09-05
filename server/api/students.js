@@ -3,7 +3,7 @@ const { Student, Campus } = require("../db");
 
 router.get("/", async (req, res, next) => {
 	try {
-		const studentList = await Student.findAll();
+		const studentList = await Student.findAll({ order: [["id", "ASC"]] });
 		res.send(studentList);
 	} catch (error) {
 		next(error);
@@ -21,11 +21,17 @@ router.get("/:id", async (req, res, next) => {
 });
 router.post("/", async (req, res, next) => {
 	try {
-		console.log(req.body);
 		const newStudent = await Student.create(req.body);
 		res.send(newStudent);
 	} catch (error) {
-		next(error);
+		if (
+			error.name === "SequelizeUniqueConstraintError" ||
+			error.name === "SequelizeValidationError"
+		) {
+			res.status(400).send(error);
+		} else {
+			next(error);
+		}
 	}
 });
 router.put("/:id", async (req, res, next) => {

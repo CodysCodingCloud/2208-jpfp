@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addCampusData } from "../store/campusSlice";
-// import { useNavigate } from "react-router-dom";
-export const AddCampus = () => {
+export const AddCampus = ({ cancelAddButton }) => {
 	const [item, setItem] = React.useState({
 		name: "",
 		address: "",
@@ -16,11 +15,10 @@ export const AddCampus = () => {
 		let target = event.target.name;
 		let value = event.target.value;
 		setItem({ ...item, [target]: value });
-		console.log(item);
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (item.name.length > 0 && item.description.length > 0) {
+		if (item.name.length > 0) {
 			if (item.imageUrl.length === 0) {
 				delete item.imageUrl;
 			}
@@ -74,6 +72,7 @@ export const AddCampus = () => {
 			></input>
 			<br />
 			<button onClick={(e) => handleSubmit(e)}>Add Campus</button>
+			<button onClick={cancelAddButton}>Cancel</button>
 		</form>
 	);
 };

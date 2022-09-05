@@ -29,6 +29,10 @@ const campusSlice = createSlice({
 			);
 			return state;
 		},
+		setErrorMsg: (state, action) => {
+			state.errorMsg = action.payload;
+			return state;
+		},
 	},
 });
 export default campusSlice.reducer;
@@ -49,8 +53,12 @@ export const fetchCampusData = (campusId) => async (dispatch) => {
 	dispatch(getCampus(campusData));
 };
 export const addCampusData = (newCampusData) => async (dispatch) => {
-	const { data: newData } = await axios.post("/api/campuses", newCampusData);
-	dispatch(addCampus(newData));
+	try {
+		const { data: newData } = await axios.post("/api/campuses", newCampusData);
+		dispatch(addCampus(newData));
+	} catch (error) {
+		dispatch(setErrorMsg(error.response.data));
+	}
 };
 export const removeCampusData = (campusData, navigate) => async (dispatch) => {
 	const { data: deletedCampus } = await axios.delete(

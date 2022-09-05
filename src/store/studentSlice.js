@@ -39,9 +39,14 @@ export const fetchStudentProfile = (studentId) => async (dispatch) => {
 	dispatch(getStudentProfile(studentProfile));
 };
 export const addStudentData = (newStudentData) => async (dispatch) => {
-	const { data: newData } = await axios.post("/api/students", newStudentData);
-	console.log("newData", newData);
-	dispatch(addStudent(newData));
+	try {
+		const { data: newData } = await axios.post("/api/students", newStudentData);
+		console.log("newData", newData);
+		dispatch(addStudent(newData));
+	} catch (error) {
+		console.log("slice", error.response.data.errors[0]);
+		return error.response.data.errors[0].message;
+	}
 };
 export const removeStudentData =
 	(studentProfile, navigate) => async (dispatch) => {

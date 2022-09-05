@@ -25,7 +25,7 @@ export function StudentProfile() {
 
 	return (
 		<>
-			{studentProfile && (
+			{studentProfile ? (
 				<div className="studentProfile">
 					<h1>Student Profile</h1>
 					{editToggle ? (
@@ -68,6 +68,8 @@ export function StudentProfile() {
 						</button>
 					)}
 				</div>
+			) : (
+				<h3>Student not found, please return to home</h3>
 			)}
 		</>
 	);
