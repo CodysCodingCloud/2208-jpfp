@@ -10,7 +10,6 @@ export const EditCampus = ({ campusData, toggleEditButton }) => {
 		let target = event.target.name;
 		let value = event.target.value;
 		setItem({ ...item, [target]: value });
-		console.log(item);
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();

@@ -23,7 +23,6 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
 	try {
 		const newCampus = await Campus.create(req.body);
-		console.log("newCampus", newCampus);
 		res.send(newCampus);
 	} catch (error) {
 		if ((error.name = "SequelizeValidationError")) {

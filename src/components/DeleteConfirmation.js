@@ -13,7 +13,6 @@ export function DeleteConfirmation({
 	const { pathname } = useLocation();
 
 	const handleDelete = () => {
-		console.dir(objToBeRemoved);
 		if (modelName === "students") {
 			dispatch(removeStudentData(objToBeRemoved, navigate));
 		} else if (modelName === "campuses") {

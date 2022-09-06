@@ -76,7 +76,6 @@ export const updateCampusData = (updatedcampus) => async (dispatch) => {
 };
 export const unregisterStudent =
 	(updatedStudentProfile) => async (dispatch) => {
-		console.log("nu;;?", updatedStudentProfile);
 		const { data: updatedStudent } = await axios.put(
 			`/api/students/${updatedStudentProfile.id}`,
 			updatedStudentProfile

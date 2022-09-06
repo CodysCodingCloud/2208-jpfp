@@ -41,10 +41,8 @@ export const fetchStudentProfile = (studentId) => async (dispatch) => {
 export const addStudentData = (newStudentData) => async (dispatch) => {
 	try {
 		const { data: newData } = await axios.post("/api/students", newStudentData);
-		console.log("newData", newData);
 		dispatch(addStudent(newData));
 	} catch (error) {
-		console.log("slice", error.response.data.errors[0]);
 		return error.response.data.errors[0].message;
 	}
 };
@@ -62,6 +60,5 @@ export const updateStudentData =
 			`/api/students/${updatedStudentProfile.id}`,
 			updatedStudentProfile
 		);
-		console.log("new", updatedStudent);
 		dispatch(getStudentProfile(updatedStudent));
 	};

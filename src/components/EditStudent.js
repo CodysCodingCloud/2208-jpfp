@@ -10,7 +10,6 @@ export const EditStudent = ({ editToggle, setEditToggle, studentProfile }) => {
 		let target = event.target.name;
 		let value = event.target.value;
 		setItem({ ...item, [target]: value });
-		console.log(item);
 	};
 	React.useEffect(() => {
 		dispatch(fetchCampuses());
